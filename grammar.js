@@ -128,7 +128,7 @@ export default grammar({
     comment: $ => seq('//', /.*/),
     string: $ => /'[^']*'/,
     type_identifier: $ => /[A-Z][a-zA-Z0-9_]*/,
-    identifier: $ => /[a-z][a-z0-9_]*/,
+    identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
   },
 })
 
