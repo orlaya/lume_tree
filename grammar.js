@@ -37,17 +37,15 @@ export default grammar({
     //   #/aliased/path            — alias (# highlighted specially)
     //   @scope/pkg                — npm-style scoped
     // Valid filename chars: letters, digits, _, -, . (dots allowed in names)
-    import_path: $ => seq(
-      optional(choice(
-        $.path_alias_prefix,   // #
-        $.path_relative_prefix, // . or ..
-      )),
+    import_path: $ => choice(
+      seq($.path_alias_prefix, optional($.path_body)),
+      seq($.path_relative_prefix, optional($.path_body)),
       $.path_body,
     ),
 
-    path_alias_prefix: $ => '#',
-    path_relative_prefix: $ => /\.\.?/,
-    path_body: $ => /\/?@?[a-zA-Z_][\w\-./]*/,
+    path_alias_prefix: $ => '#/',
+    path_relative_prefix: $ => /\.\.?\//,
+    path_body: $ => /@?[a-zA-Z_][\w\-./]*/,
 
     // ────────────────────────────────
     // enum ErrTypes { ... }

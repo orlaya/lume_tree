@@ -91,26 +91,47 @@
       ]
     },
     "import_path": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
+            {
+              "type": "SYMBOL",
+              "name": "path_alias_prefix"
+            },
             {
               "type": "CHOICE",
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "path_alias_prefix"
+                  "name": "path_body"
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "path_relative_prefix"
+                  "type": "BLANK"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "path_relative_prefix"
             },
             {
-              "type": "BLANK"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "path_body"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           ]
         },
@@ -122,15 +143,15 @@
     },
     "path_alias_prefix": {
       "type": "STRING",
-      "value": "#"
+      "value": "#/"
     },
     "path_relative_prefix": {
       "type": "PATTERN",
-      "value": "\\.\\.?"
+      "value": "\\.\\.?\\/"
     },
     "path_body": {
       "type": "PATTERN",
-      "value": "\\/?@?[a-zA-Z_][\\w\\-./]*"
+      "value": "@?[a-zA-Z_][\\w\\-./]*"
     },
     "enum_declaration": {
       "type": "SEQ",
