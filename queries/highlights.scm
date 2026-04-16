@@ -93,7 +93,7 @@
 ; ————————————————————————
 
 (attribute
-  "#" @punctuation
+  "#" @operator
   (identifier) @attribute)
 
 (attribute
