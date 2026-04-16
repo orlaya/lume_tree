@@ -27,11 +27,27 @@ export default grammar({
       field('path', $.import_path),
       '::',
       '{',
-      commaSep(alias($.identifier, $.imported_name)),
+      repeat(choice(alias($.identifier, $.imported_name), ',', /\r?\n/)),
       '}',
     ),
 
-    import_path: $ => /@?[a-zA-Z_][\w\-\/.]*/,
+    // Forms:
+    //   file/path                 — regular
+    //   ./file/path, ../file/path — relative (max two dots, one level)
+    //   #/aliased/path            — alias (# highlighted specially)
+    //   @scope/pkg                — npm-style scoped
+    // Valid filename chars: letters, digits, _, -, . (dots allowed in names)
+    import_path: $ => seq(
+      optional(choice(
+        $.path_alias_prefix,   // #
+        $.path_relative_prefix, // . or ..
+      )),
+      $.path_body,
+    ),
+
+    path_alias_prefix: $ => '#',
+    path_relative_prefix: $ => /\.\.?/,
+    path_body: $ => /\/?@?[a-zA-Z_][\w\-./]*/,
 
     // ────────────────────────────────
     // enum ErrTypes { ... }

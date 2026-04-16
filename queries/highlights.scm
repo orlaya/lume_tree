@@ -20,10 +20,18 @@
 ; ————————————————————————
 
 (import_statement
-  path: (import_path) @string.special
   "::" @operator
   "{" @punctuation.bracket
   "}" @punctuation.bracket)
+
+(import_path
+  (path_body) @string.special)
+
+(import_path
+  (path_alias_prefix) @operator)
+
+(import_path
+  (path_relative_prefix) @punctuation.special)
 
 ; Case-based highlighting for imported names
 ; Lowercase start → variable

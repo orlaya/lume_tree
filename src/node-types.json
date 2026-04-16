@@ -77,6 +77,29 @@
     }
   },
   {
+    "type": "import_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "path_alias_prefix",
+          "named": true
+        },
+        {
+          "type": "path_body",
+          "named": true
+        },
+        {
+          "type": "path_relative_prefix",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "import_statement",
     "named": true,
     "fields": {
@@ -185,6 +208,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "path_alias_prefix",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "source_file",
@@ -463,16 +491,20 @@
     "named": false
   },
   {
-    "type": "import_path",
-    "named": true
-  },
-  {
     "type": "imported_name",
     "named": true
   },
   {
     "type": "maybe",
     "named": false
+  },
+  {
+    "type": "path_body",
+    "named": true
+  },
+  {
+    "type": "path_relative_prefix",
+    "named": true
   },
   {
     "type": "string",

@@ -60,40 +60,52 @@
           "value": "{"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                "named": true,
+                "value": "imported_name"
+              },
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "PATTERN",
+                "value": "\\r?\\n"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "import_path": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
+              "type": "CHOICE",
               "members": [
                 {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "identifier"
-                  },
-                  "named": true,
-                  "value": "imported_name"
+                  "type": "SYMBOL",
+                  "name": "path_alias_prefix"
                 },
                 {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": ","
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "SYMBOL",
-                          "name": "identifier"
-                        },
-                        "named": true,
-                        "value": "imported_name"
-                      }
-                    ]
-                  }
+                  "type": "SYMBOL",
+                  "name": "path_relative_prefix"
                 }
               ]
             },
@@ -103,14 +115,22 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "}"
+          "type": "SYMBOL",
+          "name": "path_body"
         }
       ]
     },
-    "import_path": {
+    "path_alias_prefix": {
+      "type": "STRING",
+      "value": "#"
+    },
+    "path_relative_prefix": {
       "type": "PATTERN",
-      "value": "@?[a-zA-Z_][\\w\\-\\/.]*"
+      "value": "\\.\\.?"
+    },
+    "path_body": {
+      "type": "PATTERN",
+      "value": "\\/?@?[a-zA-Z_][\\w\\-./]*"
     },
     "enum_declaration": {
       "type": "SEQ",
