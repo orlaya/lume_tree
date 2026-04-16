@@ -52,10 +52,9 @@ export default grammar({
 
     path_alias_prefix: $ => '#',
     path_relative_prefix: $ => /\.\.?/,
-    path_body: $ => seq(
-      optional('/'),
-      $.path_segment,
-      repeat(seq('/', $.path_segment)),
+    path_body: $ => choice(
+      seq('/', optional(seq($.path_segment, repeat(seq('/', optional($.path_segment)))))),
+      seq($.path_segment, repeat(seq('/', optional($.path_segment)))),
     ),
     path_segment: $ => /[\w@][\w\-.@]*/,
 
