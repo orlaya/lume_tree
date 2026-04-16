@@ -1,0 +1,22 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "lume",
+      "title": "lume",
+      "scope": "source.lume",
+      "file-types": ["lm"],
+      "injection-regex": "^lume$",
+      "class-name": "TreeSitterLume"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.0",
+    "links": {
+      "repository": "https://github.com/orlaya/lume_tree"
+    }
+  },
+  "bindings": {
+    "rust": true
+  }
+}
