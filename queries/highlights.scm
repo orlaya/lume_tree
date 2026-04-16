@@ -51,16 +51,6 @@
 
 ;
 ;
-; Built-in types
-; ————————————————————————
-
-((type_identifier) @type.builtin
-  (#any-of? @type.builtin
-    "String" "Number" "Boolean" "BigInt" "Array" "Dict" "Set" "Tuple"))
-
-
-;
-;
 ; Types
 ; ————————————————————————
 
@@ -146,3 +136,13 @@
   ">" @punctuation.bracket)
 
 "," @punctuation.delimiter
+
+
+;
+;
+; Built-in types
+; ————————————————————————
+
+((type_identifier) @type.builtin
+  (#any-of? @type.builtin
+    "String" "Number" "Boolean" "BigInt" "Array" "Dict" "Set" "Tuple"))
