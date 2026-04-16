@@ -55,7 +55,8 @@
 ; ————————————————————————
 
 ((type_identifier) @type.builtin
-  (#match? @type.builtin "^(String|Number|Boolean|BigInt|Array|Dict|Set|Tuple)$"))
+  (#any-of? @type.builtin
+    "String" "Number" "Boolean" "BigInt" "Array" "Dict" "Set" "Tuple"))
 
 
 ;
