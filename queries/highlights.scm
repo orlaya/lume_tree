@@ -19,10 +19,10 @@
 ; ————————————————————————
 
 (enum_declaration
-  name: (type_identifier) @type)
+  name: (type_identifier) @constructor)
 
 (struct_declaration
-  name: (type_identifier) @type)
+  name: (type_identifier) @constructor)
 
 
 ;
@@ -31,7 +31,7 @@
 ; ————————————————————————
 
 (variant
-  "|" @punctuation.delimiter
+  "|" @operator
   name: (type_identifier) @constructor)
 
 
@@ -93,7 +93,7 @@
 ; ————————————————————————
 
 (attribute
-  "#" @punctuation.special
+  "#" @punctuation
   (identifier) @attribute)
 
 (attribute
