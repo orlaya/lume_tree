@@ -51,6 +51,15 @@
 
 ;
 ;
+; Built-in types
+; ————————————————————————
+
+((type_identifier) @type.builtin
+  (#match? @type.builtin "^(String|Number|Boolean|BigInt|Array|Dict|Set|Tuple)$"))
+
+
+;
+;
 ; Types
 ; ————————————————————————
 
