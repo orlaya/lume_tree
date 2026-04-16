@@ -12,6 +12,8 @@
 "struct" @keyword
 "maybe" @keyword
 "import" @keyword
+(visibility) @keyword
+(publish_statement "publish" @keyword)
 
 
 ;
@@ -23,6 +25,11 @@
 (import_statement "{" @punctuation.bracket)
 (import_statement "}" @punctuation.bracket)
 (import_statement "," @punctuation.delimiter)
+
+(publish_statement "::" @operator)
+(publish_statement "{" @punctuation.bracket)
+(publish_statement "}" @punctuation.bracket)
+(publish_statement "," @punctuation.delimiter)
 
 (import_path
   (path_body

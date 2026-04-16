@@ -16,6 +16,7 @@ export default grammar({
 
     _definition: $ => choice(
       $.import_statement,
+      $.publish_statement,
       $.enum_declaration,
       $.struct_declaration,
       $.attribute,
@@ -35,6 +36,25 @@ export default grammar({
         )),
       )),
     )),
+
+    // ────────────────────────────────
+    // publish types/catalogs::{ PNPM_CATALOGS, PNPM_SETTINGS }
+    // Mirrors import_statement — re-export form used in `pub.lm` barrel files.
+    publish_statement: $ => prec.right(seq(
+      'publish',
+      field('path', $.import_path),
+      optional(seq(
+        '::',
+        optional(seq(
+          '{',
+          repeat(choice(alias($.identifier, $.imported_name), ',', /\r?\n/)),
+          optional('}'),
+        )),
+      )),
+    )),
+
+    // pub = package-wide visibility, publish = external/public API.
+    visibility: $ => choice('pub', 'publish'),
 
     // Forms:
     //   file/path                 — regular
@@ -60,7 +80,9 @@ export default grammar({
 
     // ────────────────────────────────
     // enum ErrTypes { ... }
+    // Optional leading pub/publish = visibility.
     enum_declaration: $ => seq(
+      optional($.visibility),
       'enum',
       field('name', $.type_identifier),
       '{',
@@ -93,7 +115,9 @@ export default grammar({
 
     // ────────────────────────────────
     // struct Result { ... }
+    // Optional leading pub/publish = visibility.
     struct_declaration: $ => seq(
+      optional($.visibility),
       'struct',
       field('name', $.type_identifier),
       $.struct_body,
