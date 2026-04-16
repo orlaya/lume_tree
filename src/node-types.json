@@ -227,6 +227,21 @@
     "fields": {}
   },
   {
+    "type": "path_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "path_segment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -479,6 +494,10 @@
     "named": false
   },
   {
+    "type": "/",
+    "named": false
+  },
+  {
     "type": "//",
     "named": false
   },
@@ -523,11 +542,11 @@
     "named": false
   },
   {
-    "type": "path_body",
+    "type": "path_relative_prefix",
     "named": true
   },
   {
-    "type": "path_relative_prefix",
+    "type": "path_segment",
     "named": true
   },
   {

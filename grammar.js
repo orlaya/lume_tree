@@ -52,7 +52,12 @@ export default grammar({
 
     path_alias_prefix: $ => '#',
     path_relative_prefix: $ => /\.\.?/,
-    path_body: $ => /\/[\w\-./@]*|[\w@][\w\-./]*/,
+    path_body: $ => seq(
+      optional('/'),
+      $.path_segment,
+      repeat(seq('/', $.path_segment)),
+    ),
+    path_segment: $ => /[\w@][\w\-.@]*/,
 
     // ────────────────────────────────
     // enum ErrTypes { ... }

@@ -25,7 +25,12 @@
   "}" @punctuation.bracket)
 
 (import_path
-  (path_body) @string.special)
+  (path_body
+    (path_segment) @string.special))
+
+(import_path
+  (path_body
+    "/" @punctuation.delimiter))
 
 (import_path
   (path_alias_prefix) @operator)

@@ -192,8 +192,45 @@
       "value": "\\.\\.?"
     },
     "path_body": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "/"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "path_segment"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "/"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "path_segment"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "path_segment": {
       "type": "PATTERN",
-      "value": "\\/[\\w\\-./@]*|[\\w@][\\w\\-./]*"
+      "value": "[\\w@][\\w\\-.@]*"
     },
     "enum_declaration": {
       "type": "SEQ",
