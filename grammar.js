@@ -149,15 +149,15 @@ export default grammar({
     // ────────────────────────────────
     // #aka('workspace:*')
     // #derive(this-thing, that_thing, 'or this string')
-    attribute: $ => seq(
+    attribute: $ => prec.right(seq(
       '#',
-      $.identifier,
+      optional($.identifier),
       optional(seq(
         '(',
         commaSep(choice($.string, $.attribute_arg)),
         ')',
       )),
-    ),
+    )),
 
     // Unquoted attribute argument — identifier-like but allows dashes
     attribute_arg: $ => /[a-zA-Z_][\w\-]*/,
@@ -165,7 +165,7 @@ export default grammar({
     // ────────────────────────────────
 
     comment: $ => seq('//', /.*/),
-    string: $ => /'[^'\n]*'|"[^"\n]*"/,
+    string: $ => /'[^'\n]*'?|"[^"\n]*"?/,
     type_identifier: $ => /[A-Z][a-zA-Z0-9_]*/,
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
   },
