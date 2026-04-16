@@ -134,7 +134,7 @@
   "(" @punctuation.bracket
   ")" @punctuation.bracket)
 
-(attribute_arg) @constant
+(attribute_arg) @property
 
 
 ;
