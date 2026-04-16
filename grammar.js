@@ -22,14 +22,18 @@ export default grammar({
 
     // ────────────────────────────────
     // import orlaya/gist::{ User, Result, MAX_SIZE, do_thing }
-    import_statement: $ => seq(
+    import_statement: $ => prec.right(seq(
       'import',
       field('path', $.import_path),
-      '::',
-      '{',
-      repeat(choice(alias($.identifier, $.imported_name), ',', /\r?\n/)),
-      '}',
-    ),
+      optional(seq(
+        '::',
+        optional(seq(
+          '{',
+          repeat(choice(alias($.identifier, $.imported_name), ',', /\r?\n/)),
+          optional('}'),
+        )),
+      )),
+    )),
 
     // Forms:
     //   file/path                 — regular
