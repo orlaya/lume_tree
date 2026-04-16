@@ -126,9 +126,8 @@
 ; Attributes
 ; ————————————————————————
 
-(attribute
-  "#" @operator
-  (identifier) @attribute)
+(attribute "#" @operator)
+(attribute (identifier) @attribute)
 
 (attribute
   "(" @punctuation.bracket
