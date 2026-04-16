@@ -19,10 +19,10 @@
 ; Imports
 ; ————————————————————————
 
-(import_statement
-  "::" @operator
-  "{" @punctuation.bracket
-  "}" @punctuation.bracket)
+(import_statement "::" @operator)
+(import_statement "{" @punctuation.bracket)
+(import_statement "}" @punctuation.bracket)
+(import_statement "," @punctuation.delimiter)
 
 (import_path
   (path_body
