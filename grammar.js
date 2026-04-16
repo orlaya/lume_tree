@@ -165,7 +165,7 @@ export default grammar({
     // ────────────────────────────────
 
     comment: $ => seq('//', /.*/),
-    string: $ => /'[^']*'/,
+    string: $ => /'[^'\n]*'/,
     type_identifier: $ => /[A-Z][a-zA-Z0-9_]*/,
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
   },
