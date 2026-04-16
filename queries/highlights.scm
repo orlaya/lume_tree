@@ -11,6 +11,32 @@
 "enum" @keyword
 "struct" @keyword
 "maybe" @keyword
+"import" @keyword
+
+
+;
+;
+; Imports
+; ————————————————————————
+
+(import_statement
+  path: (import_path) @string.special
+  "::" @operator
+  "{" @punctuation.bracket
+  "}" @punctuation.bracket)
+
+; Case-based highlighting for imported names
+; Lowercase start → variable
+((imported_name) @variable
+  (#match? @variable "^[a-z_]"))
+
+; Uppercase start → type (PascalCase and ALL_CAPS initially)
+((imported_name) @type
+  (#match? @type "^[A-Z]"))
+
+; All-caps → constant (wins over @type because it's later)
+((imported_name) @constant
+  (#match? @constant "^[A-Z][A-Z0-9_]*$"))
 
 
 ;

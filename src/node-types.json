@@ -77,6 +77,32 @@
     }
   },
   {
+    "type": "import_statement",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "import_path",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "imported_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "maybe_type",
     "named": true,
     "fields": {},
@@ -171,6 +197,10 @@
       "types": [
         {
           "type": "enum_declaration",
+          "named": true
+        },
+        {
+          "type": "import_statement",
           "named": true
         },
         {
@@ -409,6 +439,10 @@
     "named": false
   },
   {
+    "type": "::",
+    "named": false
+  },
+  {
     "type": "<",
     "named": false
   },
@@ -422,6 +456,18 @@
   },
   {
     "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "import",
+    "named": false
+  },
+  {
+    "type": "import_path",
+    "named": true
+  },
+  {
+    "type": "imported_name",
     "named": true
   },
   {

@@ -15,9 +15,23 @@ export default grammar({
     source_file: $ => repeat(choice($._definition, /\r?\n/)),
 
     _definition: $ => choice(
+      $.import_statement,
       $.enum_declaration,
       $.struct_declaration,
     ),
+
+    // ────────────────────────────────
+    // import orlaya/gist::{ User, Result, MAX_SIZE, do_thing }
+    import_statement: $ => seq(
+      'import',
+      field('path', $.import_path),
+      '::',
+      '{',
+      commaSep(alias($.identifier, $.imported_name)),
+      '}',
+    ),
+
+    import_path: $ => /@?[a-zA-Z_][\w\-\/.]*/,
 
     // ────────────────────────────────
     // enum ErrTypes { ... }
