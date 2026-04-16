@@ -744,7 +744,7 @@
     },
     "string": {
       "type": "PATTERN",
-      "value": "'[^'\\n]*'"
+      "value": "'[^'\\n]*'|\"[^\"\\n]*\""
     },
     "type_identifier": {
       "type": "PATTERN",
