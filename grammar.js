@@ -18,6 +18,7 @@ export default grammar({
       $.import_statement,
       $.enum_declaration,
       $.struct_declaration,
+      $.attribute,
     ),
 
     // ────────────────────────────────
@@ -59,7 +60,7 @@ export default grammar({
       'enum',
       field('name', $.type_identifier),
       '{',
-      repeat(choice($.variant, ',', /\r?\n/)),
+      repeat(choice($.variant, $.attribute, ',', /\r?\n/)),
       '}',
     ),
 
@@ -67,12 +68,12 @@ export default grammar({
     // | Invalid(reason: String)
     // | Ok(String)
     // | Err(...ErrTypes)
-    variant: $ => seq(
+    variant: $ => prec.right(seq(
       '|',
       field('name', $.type_identifier),
       optional($.variant_params),
       optional($.attribute),
-    ),
+    )),
 
     variant_params: $ => seq(
       '(',
@@ -96,16 +97,16 @@ export default grammar({
 
     struct_body: $ => seq(
       '{',
-      repeat(choice($.struct_field, $.spread_type, ',', /\r?\n/)),
+      repeat(choice($.struct_field, $.spread_type, $.attribute, ',', /\r?\n/)),
       '}',
     ),
 
-    struct_field: $ => seq(
+    struct_field: $ => prec.right(seq(
       field('name', $.identifier),
       ':',
       field('type', $._type),
       optional($.attribute),
-    ),
+    )),
 
     // ────────────────────────────────
     // Types
@@ -135,7 +136,7 @@ export default grammar({
 
     nested_struct: $ => seq(
       '{',
-      repeat(choice($.struct_field, $.spread_type, ',', /\r?\n/)),
+      repeat(choice($.struct_field, $.spread_type, $.attribute, ',', /\r?\n/)),
       '}',
     ),
 
@@ -147,15 +148,19 @@ export default grammar({
 
     // ────────────────────────────────
     // #aka('workspace:*')
+    // #derive(this-thing, that_thing, 'or this string')
     attribute: $ => seq(
       '#',
       $.identifier,
       optional(seq(
         '(',
-        commaSep($.string),
+        commaSep(choice($.string, $.attribute_arg)),
         ')',
       )),
     ),
+
+    // Unquoted attribute argument — identifier-like but allows dashes
+    attribute_arg: $ => /[a-zA-Z_][\w\-]*/,
 
     // ────────────────────────────────
 

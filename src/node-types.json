@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "attribute_arg",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -43,6 +47,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "attribute",
+          "named": true
+        },
         {
           "type": "variant",
           "named": true
@@ -199,6 +207,10 @@
       "required": false,
       "types": [
         {
+          "type": "attribute",
+          "named": true
+        },
+        {
           "type": "spread_type",
           "named": true
         },
@@ -223,6 +235,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "attribute",
+          "named": true
+        },
         {
           "type": "enum_declaration",
           "named": true
@@ -261,6 +277,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "attribute",
+          "named": true
+        },
         {
           "type": "spread_type",
           "named": true
@@ -477,6 +497,10 @@
   {
     "type": ">",
     "named": false
+  },
+  {
+    "type": "attribute_arg",
+    "named": true
   },
   {
     "type": "enum",
