@@ -143,15 +143,15 @@
     },
     "path_alias_prefix": {
       "type": "STRING",
-      "value": "#/"
+      "value": "#"
     },
     "path_relative_prefix": {
       "type": "PATTERN",
-      "value": "\\.\\.?\\/"
+      "value": "\\.\\.?"
     },
     "path_body": {
       "type": "PATTERN",
-      "value": "@?[a-zA-Z_][\\w\\-./]*"
+      "value": "\\/[\\w\\-./@]*|[\\w@][\\w\\-./]*"
     },
     "enum_declaration": {
       "type": "SEQ",

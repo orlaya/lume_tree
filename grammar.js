@@ -33,19 +33,21 @@ export default grammar({
 
     // Forms:
     //   file/path                 — regular
-    //   ./file/path, ../file/path — relative (max two dots, one level)
+    //   ./file/path, ../file/path — relative (. or .. max)
     //   #/aliased/path            — alias (# highlighted specially)
     //   @scope/pkg                — npm-style scoped
-    // Valid filename chars: letters, digits, _, -, . (dots allowed in names)
+    // The prefix is just the special char(s); the / and the rest are body.
+    // This keeps path slashes visually consistent and lets the parser accept
+    // in-progress paths like `import .` or `import #` mid-typing.
     import_path: $ => choice(
       seq($.path_alias_prefix, optional($.path_body)),
       seq($.path_relative_prefix, optional($.path_body)),
       $.path_body,
     ),
 
-    path_alias_prefix: $ => '#/',
-    path_relative_prefix: $ => /\.\.?\//,
-    path_body: $ => /@?[a-zA-Z_][\w\-./]*/,
+    path_alias_prefix: $ => '#',
+    path_relative_prefix: $ => /\.\.?/,
+    path_body: $ => /\/[\w\-./@]*|[\w@][\w\-./]*/,
 
     // ────────────────────────────────
     // enum ErrTypes { ... }

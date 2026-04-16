@@ -210,6 +210,11 @@
     }
   },
   {
+    "type": "path_alias_prefix",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -492,10 +497,6 @@
   {
     "type": "maybe",
     "named": false
-  },
-  {
-    "type": "path_alias_prefix",
-    "named": true
   },
   {
     "type": "path_body",
