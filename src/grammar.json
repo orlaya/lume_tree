@@ -40,6 +40,22 @@
         },
         {
           "type": "SYMBOL",
+          "name": "const_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "fn_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mutable_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "visibility"
+        },
+        {
+          "type": "SYMBOL",
           "name": "attribute"
         }
       ]
@@ -240,6 +256,81 @@
           "value": "publish"
         }
       ]
+    },
+    "const_declaration": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "visibility"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": "const"
+          }
+        ]
+      }
+    },
+    "fn_declaration": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "visibility"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": "fn"
+          }
+        ]
+      }
+    },
+    "mutable_declaration": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "visibility"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": "mutable"
+          }
+        ]
+      }
     },
     "import_path": {
       "type": "CHOICE",
@@ -998,7 +1089,52 @@
       "name": "comment"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "publish_statement",
+      "visibility"
+    ],
+    [
+      "visibility",
+      "enum_declaration"
+    ],
+    [
+      "visibility",
+      "struct_declaration"
+    ],
+    [
+      "visibility",
+      "const_declaration"
+    ],
+    [
+      "visibility",
+      "fn_declaration"
+    ],
+    [
+      "visibility",
+      "mutable_declaration"
+    ],
+    [
+      "_definition",
+      "enum_declaration"
+    ],
+    [
+      "_definition",
+      "struct_declaration"
+    ],
+    [
+      "_definition",
+      "const_declaration"
+    ],
+    [
+      "_definition",
+      "fn_declaration"
+    ],
+    [
+      "_definition",
+      "mutable_declaration"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [],

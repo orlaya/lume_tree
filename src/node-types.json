@@ -29,6 +29,21 @@
     "fields": {}
   },
   {
+    "type": "const_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "visibility",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "enum_declaration",
     "named": true,
     "fields": {
@@ -55,6 +70,21 @@
           "type": "variant",
           "named": true
         },
+        {
+          "type": "visibility",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fn_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
         {
           "type": "visibility",
           "named": true
@@ -159,6 +189,21 @@
         },
         {
           "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "mutable_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "visibility",
           "named": true
         }
       ]
@@ -285,11 +330,23 @@
           "named": true
         },
         {
+          "type": "const_declaration",
+          "named": true
+        },
+        {
           "type": "enum_declaration",
           "named": true
         },
         {
+          "type": "fn_declaration",
+          "named": true
+        },
+        {
           "type": "import_statement",
+          "named": true
+        },
+        {
+          "type": "mutable_declaration",
           "named": true
         },
         {
@@ -298,6 +355,10 @@
         },
         {
           "type": "struct_declaration",
+          "named": true
+        },
+        {
+          "type": "visibility",
           "named": true
         }
       ]
@@ -565,7 +626,15 @@
     "named": true
   },
   {
+    "type": "const",
+    "named": false
+  },
+  {
     "type": "enum",
+    "named": false
+  },
+  {
+    "type": "fn",
     "named": false
   },
   {
@@ -582,6 +651,10 @@
   },
   {
     "type": "maybe",
+    "named": false
+  },
+  {
+    "type": "mutable",
     "named": false
   },
   {

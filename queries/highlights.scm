@@ -12,6 +12,9 @@
 "struct" @keyword
 "maybe" @keyword
 "import" @keyword
+"const" @keyword
+"fn" @keyword
+"mutable" @keyword
 (visibility) @keyword
 (publish_statement "publish" @keyword)
 

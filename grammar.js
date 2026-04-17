@@ -11,6 +11,23 @@ export default grammar({
 
   word: $ => $.identifier,
 
+  // Bare `pub`/`publish` on its own line overlaps with every declaration
+  // that takes an optional visibility prefix — GLR explores both paths and
+  // the longest match wins (combined decl preferred when the keyword follows).
+  conflicts: $ => [
+    [$.publish_statement, $.visibility],
+    [$.visibility, $.enum_declaration],
+    [$.visibility, $.struct_declaration],
+    [$.visibility, $.const_declaration],
+    [$.visibility, $.fn_declaration],
+    [$.visibility, $.mutable_declaration],
+    [$._definition, $.enum_declaration],
+    [$._definition, $.struct_declaration],
+    [$._definition, $.const_declaration],
+    [$._definition, $.fn_declaration],
+    [$._definition, $.mutable_declaration],
+  ],
+
   rules: {
     source_file: $ => repeat(choice($._definition, /\r?\n/)),
 
@@ -19,6 +36,10 @@ export default grammar({
       $.publish_statement,
       $.enum_declaration,
       $.struct_declaration,
+      $.const_declaration,
+      $.fn_declaration,
+      $.mutable_declaration,
+      $.visibility,
       $.attribute,
     ),
 
@@ -55,6 +76,14 @@ export default grammar({
 
     // pub = package-wide visibility, publish = external/public API.
     visibility: $ => choice('pub', 'publish'),
+
+    // ────────────────────────────────
+    // Stubs for keywords that don't have full grammar yet — just the leading
+    // keyword (plus optional visibility) so Zed highlights them while we
+    // prototype. Replace with real declaration rules when the language grows.
+    const_declaration: $ => prec.right(seq(optional($.visibility), 'const')),
+    fn_declaration: $ => prec.right(seq(optional($.visibility), 'fn')),
+    mutable_declaration: $ => prec.right(seq(optional($.visibility), 'mutable')),
 
     // Forms:
     //   file/path                 — regular
