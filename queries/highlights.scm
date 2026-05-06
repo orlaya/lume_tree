@@ -61,6 +61,10 @@
 ((imported_name) @constant
   (#match? @constant "^[A-Z][A-Z0-9_]*$"))
 
+(imported_attribute_namespace "#" @operator)
+(imported_attribute_namespace
+  (attribute_name) @attribute)
+
 
 ;
 ;
@@ -142,13 +146,15 @@
 ; ————————————————————————
 
 (attribute "#" @operator)
-(attribute (identifier) @attribute)
+(attribute_name) @attribute
+(builtin_attribute_name) @attribute
 
-(attribute
+(attribute_arguments
   "(" @punctuation.bracket
   ")" @punctuation.bracket)
 
 (attribute_arg) @property
+(attribute_list_delimiter) @punctuation.delimiter
 
 
 ;
@@ -186,6 +192,7 @@
   ">" @punctuation.bracket)
 
 "," @punctuation.delimiter
+"|" @operator
 
 
 ;

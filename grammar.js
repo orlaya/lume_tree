@@ -26,6 +26,9 @@ export default grammar({
     [$._definition, $.const_declaration],
     [$._definition, $.fn_declaration],
     [$._definition, $.mutable_declaration],
+    [$.attribute_arguments, $.inline_attribute_arguments],
+    [$.attribute_arguments, $.struct_field],
+    [$.attribute_arguments, $.variant],
   ],
 
   rules: {
@@ -40,7 +43,12 @@ export default grammar({
       $.fn_declaration,
       $.mutable_declaration,
       $.visibility,
+      $._attribute_like,
+    ),
+
+    _attribute_like: $ => choice(
       $.attribute,
+      $.builtin_attribute,
     ),
 
     // ────────────────────────────────
@@ -52,7 +60,7 @@ export default grammar({
         '::',
         optional(seq(
           '{',
-          repeat(choice(alias($.identifier, $.imported_name), ',', /\r?\n/)),
+          repeat(choice($._imported_item, ',', /\r?\n/)),
           optional('}'),
         )),
       )),
@@ -68,11 +76,21 @@ export default grammar({
         '::',
         optional(seq(
           '{',
-          repeat(choice(alias($.identifier, $.imported_name), ',', /\r?\n/)),
+          repeat(choice($._imported_item, ',', /\r?\n/)),
           optional('}'),
         )),
       )),
     )),
+
+    _imported_item: $ => choice(
+      alias($.identifier, $.imported_name),
+      $.imported_attribute_namespace,
+    ),
+
+    imported_attribute_namespace: $ => seq(
+      '#',
+      field('name', $.attribute_name),
+    ),
 
     // pub = package-wide visibility, publish = external/public API.
     visibility: $ => choice('pub', 'publish'),
@@ -115,7 +133,7 @@ export default grammar({
       'enum',
       field('name', $.type_identifier),
       '{',
-      repeat(choice($.variant, $.attribute, ',', /\r?\n/)),
+      repeat(choice($.variant, $._attribute_like, /\r?\n/)),
       '}',
     ),
 
@@ -127,7 +145,8 @@ export default grammar({
       '|',
       field('name', $.type_identifier),
       optional($.variant_params),
-      optional($.attribute),
+      optional($._attribute_like),
+      optional(','),
     )),
 
     variant_params: $ => seq(
@@ -154,7 +173,7 @@ export default grammar({
 
     struct_body: $ => seq(
       '{',
-      repeat(choice($.struct_field, $.spread_type, $.attribute, ',', /\r?\n/)),
+      repeat(choice($.struct_field, $.spread_type, $._attribute_like, ',', /\r?\n/)),
       '}',
     ),
 
@@ -162,7 +181,8 @@ export default grammar({
       field('name', $.identifier),
       ':',
       field('type', $._type),
-      optional($.attribute),
+      optional($._attribute_like),
+      optional(','),
     )),
 
     // ────────────────────────────────
@@ -193,7 +213,7 @@ export default grammar({
 
     nested_struct: $ => seq(
       '{',
-      repeat(choice($.struct_field, $.spread_type, $.attribute, ',', /\r?\n/)),
+      repeat(choice($.struct_field, $.spread_type, $._attribute_like, ',', /\r?\n/)),
       '}',
     ),
 
@@ -206,15 +226,51 @@ export default grammar({
     // ────────────────────────────────
     // #aka('workspace:*')
     // #derive(this-thing, that_thing, 'or this string')
-    attribute: $ => prec.right(seq(
-      '#',
-      optional($.identifier),
-      optional(seq(
-        '(',
-        commaSep(choice($.string, $.attribute_arg)),
-        ')',
+    attribute: $ => prec.right(choice(
+      prec(1, seq(
+        '#',
+        $.attribute_name,
+        optional($.attribute_arguments),
       )),
+      '#',
     )),
+
+    builtin_attribute: $ => prec.right(seq(
+      $.builtin_attribute_name,
+      optional($.attribute_arguments),
+    )),
+
+    attribute_arguments: $ => choice(
+      seq(
+        '(',
+        commaSep($.attribute_value),
+        ')',
+      ),
+      prec.right(seq(
+        $.attribute_value,
+        repeat1(seq($.attribute_list_delimiter, $.attribute_value)),
+      )),
+      $.inline_attribute_arguments,
+    ),
+
+    inline_attribute_arguments: $ => prec.right(choice(
+      $.attribute_value,
+      seq(
+        $.attribute_value,
+        repeat1(seq('|', $.attribute_value)),
+      ),
+    )),
+
+    attribute_value: $ => choice(
+      $.string,
+      $.attribute_arg,
+      $.type_identifier,
+    ),
+
+    builtin_attribute_name: $ => choice('aka', 'default'),
+
+    attribute_name: $ => /[a-zA-Z_][a-zA-Z0-9_-]*(?::[a-zA-Z_][a-zA-Z0-9_-]*)*/,
+    attribute_list_delimiter: $ => token(/,[ \t]+/),
 
     // Unquoted attribute argument — identifier-like but allows dashes
     attribute_arg: $ => /[a-zA-Z_][\w\-]*/,
