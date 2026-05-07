@@ -1208,11 +1208,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "attribute_arg"
+          "name": "type_identifier"
         },
         {
           "type": "SYMBOL",
-          "name": "type_identifier"
+          "name": "attribute_arg"
         }
       ]
     },
@@ -1242,7 +1242,7 @@
     },
     "attribute_arg": {
       "type": "PATTERN",
-      "value": "[a-zA-Z_][\\w\\-]*"
+      "value": "[a-z_][\\w\\-]*"
     },
     "comment": {
       "type": "SEQ",
@@ -1286,26 +1286,6 @@
       "visibility"
     ],
     [
-      "visibility",
-      "enum_declaration"
-    ],
-    [
-      "visibility",
-      "struct_declaration"
-    ],
-    [
-      "visibility",
-      "const_declaration"
-    ],
-    [
-      "visibility",
-      "fn_declaration"
-    ],
-    [
-      "visibility",
-      "mutable_declaration"
-    ],
-    [
       "_definition",
       "enum_declaration"
     ],
@@ -1324,18 +1304,6 @@
     [
       "_definition",
       "mutable_declaration"
-    ],
-    [
-      "attribute_arguments",
-      "inline_attribute_arguments"
-    ],
-    [
-      "attribute_arguments",
-      "struct_field"
-    ],
-    [
-      "attribute_arguments",
-      "variant"
     ]
   ],
   "precedences": [],

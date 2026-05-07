@@ -16,19 +16,11 @@ export default grammar({
   // the longest match wins (combined decl preferred when the keyword follows).
   conflicts: $ => [
     [$.publish_statement, $.visibility],
-    [$.visibility, $.enum_declaration],
-    [$.visibility, $.struct_declaration],
-    [$.visibility, $.const_declaration],
-    [$.visibility, $.fn_declaration],
-    [$.visibility, $.mutable_declaration],
     [$._definition, $.enum_declaration],
     [$._definition, $.struct_declaration],
     [$._definition, $.const_declaration],
     [$._definition, $.fn_declaration],
     [$._definition, $.mutable_declaration],
-    [$.attribute_arguments, $.inline_attribute_arguments],
-    [$.attribute_arguments, $.struct_field],
-    [$.attribute_arguments, $.variant],
   ],
 
   rules: {
@@ -263,8 +255,8 @@ export default grammar({
 
     attribute_value: $ => choice(
       $.string,
-      $.attribute_arg,
       $.type_identifier,
+      $.attribute_arg,
     ),
 
     builtin_attribute_name: $ => choice('aka', 'default'),
@@ -273,7 +265,7 @@ export default grammar({
     attribute_list_delimiter: $ => token(/,[ \t]+/),
 
     // Unquoted attribute argument — identifier-like but allows dashes
-    attribute_arg: $ => /[a-zA-Z_][\w\-]*/,
+    attribute_arg: $ => /[a-z_][\w\-]*/,
 
     // ────────────────────────────────
 

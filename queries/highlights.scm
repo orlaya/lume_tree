@@ -129,6 +129,9 @@
 (named_field
   type: (type_identifier) @type)
 
+(attribute_value
+  (type_identifier) @type)
+
 
 ;
 ;
