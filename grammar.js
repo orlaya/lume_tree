@@ -130,9 +130,9 @@ export default grammar({
     ),
 
     // | NotFound
-    // | Invalid(reason: String)
-    // | Ok(String)
-    // | Err(...ErrTypes)
+    // | Invalid { reason: String }
+    // | Ok { value: String }
+    // | Err { ...ErrTypes }
     variant: $ => prec.right(seq(
       '|',
       field('name', $.type_identifier),
@@ -142,9 +142,9 @@ export default grammar({
     )),
 
     variant_params: $ => seq(
-      '(',
+      '{',
       commaSep(choice($.spread_type, $.named_field, $._type)),
-      ')',
+      '}',
     ),
 
     named_field: $ => seq(

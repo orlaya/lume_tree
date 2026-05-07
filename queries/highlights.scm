@@ -191,8 +191,8 @@
   "}" @punctuation.bracket)
 
 (variant_params
-  "(" @punctuation.bracket
-  ")" @punctuation.bracket)
+  "{" @punctuation.bracket
+  "}" @punctuation.bracket)
 
 (type_arguments
   "<" @punctuation.bracket
