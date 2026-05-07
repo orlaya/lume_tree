@@ -209,4 +209,4 @@
 
 ((type_identifier) @type.builtin
   (#any-of? @type.builtin
-    "String" "Number" "Boolean" "BigInt" "Array" "Dict" "Set" "Tuple"))
+    "String" "Number" "Boolean" "BigInt" "Array" "PairsOf" "Set" "Tuple"))
