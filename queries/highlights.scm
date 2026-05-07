@@ -150,12 +150,7 @@
 
 (attribute "#" @operator)
 (attribute_name) @attribute
-
-(builtin_attribute
-  (builtin_attribute_name) @keyword)
-
-(attribute
-  (attribute_name) @attribute)
+(builtin_attribute_name) @attribute
 
 (attribute_arguments
   "(" @punctuation.bracket
