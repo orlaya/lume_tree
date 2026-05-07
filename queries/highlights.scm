@@ -11,6 +11,7 @@
 "enum" @keyword
 "struct" @keyword
 "maybe" @keyword
+"required" @keyword
 "import" @keyword
 "const" @keyword
 "fn" @keyword
@@ -111,6 +112,9 @@
   name: (type_identifier) @type)
 
 (maybe_type
+  (type_identifier) @type)
+
+(required_type
   (type_identifier) @type)
 
 (type_arguments

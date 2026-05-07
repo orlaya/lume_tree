@@ -182,6 +182,7 @@ export default grammar({
 
     _type: $ => choice(
       $.maybe_type,
+      $.required_type,
       $.generic_type,
       $.nested_struct,
       $.type_identifier,
@@ -189,6 +190,11 @@ export default grammar({
 
     maybe_type: $ => seq(
       'maybe',
+      $._type,
+    ),
+
+    required_type: $ => seq(
+      'required',
       $._type,
     ),
 

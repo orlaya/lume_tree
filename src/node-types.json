@@ -293,6 +293,10 @@
           "named": true
         },
         {
+          "type": "required_type",
+          "named": true
+        },
+        {
           "type": "type_identifier",
           "named": true
         }
@@ -342,6 +346,10 @@
           },
           {
             "type": "nested_struct",
+            "named": true
+          },
+          {
+            "type": "required_type",
             "named": true
           },
           {
@@ -424,6 +432,37 @@
         },
         {
           "type": "imported_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "required_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "generic_type",
+          "named": true
+        },
+        {
+          "type": "maybe_type",
+          "named": true
+        },
+        {
+          "type": "nested_struct",
+          "named": true
+        },
+        {
+          "type": "required_type",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
           "named": true
         }
       ]
@@ -584,6 +623,10 @@
             "named": true
           },
           {
+            "type": "required_type",
+            "named": true
+          },
+          {
             "type": "type_identifier",
             "named": true
           }
@@ -623,6 +666,10 @@
         },
         {
           "type": "nested_struct",
+          "named": true
+        },
+        {
+          "type": "required_type",
           "named": true
         },
         {
@@ -688,6 +735,10 @@
         },
         {
           "type": "nested_struct",
+          "named": true
+        },
+        {
+          "type": "required_type",
           "named": true
         },
         {
@@ -816,6 +867,10 @@
   },
   {
     "type": "publish",
+    "named": false
+  },
+  {
+    "type": "required",
     "named": false
   },
   {
