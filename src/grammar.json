@@ -1014,40 +1014,27 @@
       "type": "PREC_RIGHT",
       "value": 0,
       "content": {
-        "type": "CHOICE",
+        "type": "SEQ",
         "members": [
-          {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "#"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "attribute_name"
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "attribute_arguments"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                }
-              ]
-            }
-          },
           {
             "type": "STRING",
             "value": "#"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "attribute_name"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "attribute_arguments"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         ]
       }

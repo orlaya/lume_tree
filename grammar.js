@@ -218,13 +218,10 @@ export default grammar({
     // ────────────────────────────────
     // #aka('workspace:*')
     // #derive(this-thing, that_thing, 'or this string')
-    attribute: $ => prec.right(choice(
-      prec(1, seq(
-        '#',
-        $.attribute_name,
-        optional($.attribute_arguments),
-      )),
+    attribute: $ => prec.right(seq(
       '#',
+      $.attribute_name,
+      optional($.attribute_arguments),
     )),
 
     builtin_attribute: $ => prec.right(seq(
