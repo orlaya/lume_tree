@@ -16,12 +16,7 @@
 "const" @keyword
 "fn" @keyword
 "mutable" @keyword
-"if" @keyword
-"otherwise" @keyword
-"return" @keyword
-"match" @keyword
-"when" @keyword
-"else" @keyword
+(future_keyword) @keyword
 (visibility) @keyword
 (publish_statement "publish" @keyword)
 
@@ -215,7 +210,7 @@
 
 "," @punctuation.delimiter
 "|" @operator
-"-->" @operator
+(future_operator) @operator
 
 ;
 ;

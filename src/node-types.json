@@ -178,6 +178,11 @@
     }
   },
   {
+    "type": "future_keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "generic_type",
     "named": true,
     "fields": {
@@ -513,6 +518,14 @@
           "named": true
         },
         {
+          "type": "future_keyword",
+          "named": true
+        },
+        {
+          "type": "future_operator",
+          "named": true
+        },
+        {
           "type": "import_statement",
           "named": true
         },
@@ -841,6 +854,10 @@
     "named": false
   },
   {
+    "type": "else",
+    "named": false
+  },
+  {
     "type": "enum",
     "named": false
   },
@@ -849,8 +866,16 @@
     "named": false
   },
   {
+    "type": "future_operator",
+    "named": true
+  },
+  {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "if",
+    "named": false
   },
   {
     "type": "import",
@@ -861,11 +886,19 @@
     "named": true
   },
   {
+    "type": "match",
+    "named": false
+  },
+  {
     "type": "maybe",
     "named": false
   },
   {
     "type": "mutable",
+    "named": false
+  },
+  {
+    "type": "otherwise",
     "named": false
   },
   {
@@ -889,6 +922,10 @@
     "named": false
   },
   {
+    "type": "return",
+    "named": false
+  },
+  {
     "type": "string",
     "named": true
   },
@@ -899,6 +936,10 @@
   {
     "type": "type_identifier",
     "named": true
+  },
+  {
+    "type": "when",
+    "named": false
   },
   {
     "type": "{",

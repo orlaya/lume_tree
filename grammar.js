@@ -34,6 +34,8 @@ export default grammar({
       $.const_declaration,
       $.fn_declaration,
       $.mutable_declaration,
+      $.future_keyword,
+      $.future_operator,
       $.visibility,
       $._attribute_like,
     ),
@@ -94,6 +96,8 @@ export default grammar({
     const_declaration: $ => prec.right(seq(optional($.visibility), 'const')),
     fn_declaration: $ => prec.right(seq(optional($.visibility), 'fn')),
     mutable_declaration: $ => prec.right(seq(optional($.visibility), 'mutable')),
+    future_keyword: $ => choice('if', 'otherwise', 'return', 'match', 'when', 'else'),
+    future_operator: $ => '-->',
 
     // Forms:
     //   file/path                 — regular

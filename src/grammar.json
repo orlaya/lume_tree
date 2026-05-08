@@ -52,6 +52,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "future_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "future_operator"
+        },
+        {
+          "type": "SYMBOL",
           "name": "visibility"
         },
         {
@@ -369,6 +377,39 @@
           }
         ]
       }
+    },
+    "future_keyword": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "if"
+        },
+        {
+          "type": "STRING",
+          "value": "otherwise"
+        },
+        {
+          "type": "STRING",
+          "value": "return"
+        },
+        {
+          "type": "STRING",
+          "value": "match"
+        },
+        {
+          "type": "STRING",
+          "value": "when"
+        },
+        {
+          "type": "STRING",
+          "value": "else"
+        }
+      ]
+    },
+    "future_operator": {
+      "type": "STRING",
+      "value": "-->"
     },
     "import_path": {
       "type": "CHOICE",
