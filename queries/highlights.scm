@@ -215,7 +215,7 @@
 
 "," @punctuation.delimiter
 "|" @operator
-
+"-->" @operator
 
 ;
 ;
