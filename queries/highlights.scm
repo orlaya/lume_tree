@@ -177,26 +177,34 @@
 ; Punctuation
 ; ————————————————————————
 
-(enum_declaration
-  (enum_body
-    "{" @punctuation.bracket
-    "}" @punctuation.bracket))
+(enum_body
+  "{" @punctuation.bracket)
 
-(struct_declaration
-  (struct_body
-    "{" @punctuation.bracket
-    "}" @punctuation.bracket))
+(enum_body
+  "}" @punctuation.bracket)
+
+(struct_body
+  "{" @punctuation.bracket)
+
+(struct_body
+  "}" @punctuation.bracket)
 
 (nested_struct
-  "{" @punctuation.bracket
+  "{" @punctuation.bracket)
+
+(nested_struct
   "}" @punctuation.bracket)
 
 (variant_params
-  "{" @punctuation.bracket
+  "{" @punctuation.bracket)
+
+(variant_params
   "}" @punctuation.bracket)
 
 (type_arguments
-  "<" @punctuation.bracket
+  "<" @punctuation.bracket)
+
+(type_arguments
   ">" @punctuation.bracket)
 
 "," @punctuation.delimiter
