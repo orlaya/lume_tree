@@ -123,11 +123,15 @@ export default grammar({
     enum_declaration: $ => seq(
       optional($.visibility),
       'enum',
-      field('name', $.type_identifier),
+      optional(field('name', $.type_identifier)),
+      optional($.enum_body),
+    ),
+
+    enum_body: $ => prec.right(seq(
       '{',
       repeat(choice($.variant, $._attribute_like, /\r?\n/)),
-      '}',
-    ),
+      optional('}'),
+    )),
 
     // | NotFound
     // | Invalid { reason: String }
@@ -159,15 +163,15 @@ export default grammar({
     struct_declaration: $ => seq(
       optional($.visibility),
       'struct',
-      field('name', $.type_identifier),
-      $.struct_body,
+      optional(field('name', $.type_identifier)),
+      optional($.struct_body),
     ),
 
-    struct_body: $ => seq(
+    struct_body: $ => prec.right(seq(
       '{',
       repeat(choice($.struct_field, $.spread_type, $._attribute_like, ',', /\r?\n/)),
-      '}',
-    ),
+      optional('}'),
+    )),
 
     struct_field: $ => prec.right(seq(
       field('name', $.identifier),

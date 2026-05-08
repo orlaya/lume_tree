@@ -178,8 +178,9 @@
 ; ————————————————————————
 
 (enum_declaration
-  "{" @punctuation.bracket
-  "}" @punctuation.bracket)
+  (enum_body
+    "{" @punctuation.bracket
+    "}" @punctuation.bracket))
 
 (struct_declaration
   (struct_body
