@@ -16,6 +16,12 @@
 "const" @keyword
 "fn" @keyword
 "mutable" @keyword
+"if" @keyword
+"otherwise" @keyword
+"return" @keyword
+"match" @keyword
+"when" @keyword
+"else" @keyword
 (visibility) @keyword
 (publish_statement "publish" @keyword)
 
@@ -218,4 +224,4 @@
 
 ((type_identifier) @type.builtin
   (#any-of? @type.builtin
-    "String" "Number" "Boolean" "BigInt" "Array" "PairsOf" "Set" "Tuple"))
+     "String" "Integer" "Int" "Boolean" "Bool" "BigInt" "Array" "PairsOf" "Set"))
