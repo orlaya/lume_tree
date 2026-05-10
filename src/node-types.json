@@ -846,11 +846,19 @@
     "named": true
   },
   {
+    "type": "component",
+    "named": false
+  },
+  {
     "type": "const",
     "named": false
   },
   {
     "type": "default",
+    "named": false
+  },
+  {
+    "type": "each",
     "named": false
   },
   {
@@ -863,6 +871,10 @@
   },
   {
     "type": "fn",
+    "named": false
+  },
+  {
+    "type": "for",
     "named": false
   },
   {
@@ -884,6 +896,10 @@
   {
     "type": "imported_name",
     "named": true
+  },
+  {
+    "type": "in",
+    "named": false
   },
   {
     "type": "match",

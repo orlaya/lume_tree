@@ -404,6 +404,22 @@
         {
           "type": "STRING",
           "value": "else"
+        },
+        {
+          "type": "STRING",
+          "value": "for"
+        },
+        {
+          "type": "STRING",
+          "value": "each"
+        },
+        {
+          "type": "STRING",
+          "value": "in"
+        },
+        {
+          "type": "STRING",
+          "value": "component"
         }
       ]
     },
