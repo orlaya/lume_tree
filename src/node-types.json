@@ -183,6 +183,11 @@
     "fields": {}
   },
   {
+    "type": "future_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "generic_type",
     "named": true,
     "fields": {
@@ -802,6 +807,10 @@
     "named": false
   },
   {
+    "type": "-->",
+    "named": false
+  },
+  {
     "type": "...",
     "named": false
   },
@@ -827,6 +836,10 @@
   },
   {
     "type": ">",
+    "named": false
+  },
+  {
+    "type": ">>",
     "named": false
   },
   {
@@ -876,10 +889,6 @@
   {
     "type": "for",
     "named": false
-  },
-  {
-    "type": "future_operator",
-    "named": true
   },
   {
     "type": "identifier",
@@ -934,6 +943,10 @@
     "named": false
   },
   {
+    "type": "repeat",
+    "named": false
+  },
+  {
     "type": "required",
     "named": false
   },
@@ -954,7 +967,15 @@
     "named": true
   },
   {
+    "type": "until",
+    "named": false
+  },
+  {
     "type": "when",
+    "named": false
+  },
+  {
+    "type": "while",
     "named": false
   },
   {

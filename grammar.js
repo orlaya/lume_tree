@@ -96,8 +96,8 @@ export default grammar({
     const_declaration: $ => prec.right(seq(optional($.visibility), 'const')),
     fn_declaration: $ => prec.right(seq(optional($.visibility), 'fn')),
     mutable_declaration: $ => prec.right(seq(optional($.visibility), 'mutable')),
-    future_keyword: $ => choice('if', 'otherwise', 'return', 'match', 'when', 'else', 'for', 'each', 'in', 'component'),
-    future_operator: $ => '-->',
+    future_keyword: $ => choice('if', 'otherwise', 'return', 'match', 'when', 'else', 'for', 'each', 'in', 'component', 'repeat', 'while', 'until'),
+    future_operator: $ => choice('-->', '>>'),
 
     // Forms:
     //   file/path                 — regular
